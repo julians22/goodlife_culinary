@@ -1,0 +1,17 @@
+/* Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your custom styles here */
+@layer base{
+    /* Reset Fonts */
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #fffaeb;
+    }
+}
+
+@layer components{
+
+}
