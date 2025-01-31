@@ -1,8 +1,13 @@
+import tailwindcssMotion from "tailwindcss-motion"
+import tailwindcssIntersect from "tailwindcss-intersect"
+import defaultTheme from 'tailwindcss/defaultTheme'
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./resources/**/*.blade.php",
-    "./resources/**/*.js"
+    "./resources/**/*.js",
+    "./resources/**/*.vue"
   ],
   theme: {
     extend: {
@@ -12,22 +17,26 @@ module.exports = {
         container: {
             center: true,
             padding: {
-                DEFAULT: '1rem',
-                sm: '2rem',
-                lg: '4rem',
+                DEFAULT: '1.5rem',
+                lg: '3rem',
                 xl: '5rem',
                 '2xl': '6rem'
             }
         },
         colors: {
             goodlife: {
-                green: '#008155',
-                orange: '#ff2b00',
-                butter: '#fffaeb'
+                bronze: '#c37937',
+                sand: '#efd1a1',
+                beige: '#fff8eb',
+                orange: '#f84600',
+                peanut: '#e5a345'
             }
+        },
+        fontFamily: {
+            'sans': ['Poppins', ...defaultTheme.fontFamily.sans],
         }
     },
   },
-  plugins: [],
+  plugins: [tailwindcssMotion, tailwindcssIntersect],
 }
 

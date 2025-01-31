@@ -2,182 +2,154 @@
 
 @section('content')
 
-{{-- Hero Section --}}
-<section class="container py-6">
-    <div class="px-6 relative mx-auto max-w-max space-y-5">
-        <div class="block"><span class="text-6xl font-bold rotate-3 inline-block">Tangerangs's</span></div>
-        <div class="block"><span class="text-6xl font-bold -rotate-2 inline-block text-goodlife-green">Best Cafe's</span></div>
-        <div class="block"><span class="text-6xl font-bold rotate-1 inline-block">for <span class="text-goodlife-orange">Celebrations!</span></span></div>
+{{-- Banner Section --}}
+<section class="max-w-[1920px] mx-auto">
+    <div class="slide-show overflow-x-hidden h-full">
+        <div class="swiper-wrapper">
+            @for($i = 1; $i <= 3; $i++)
+                <div class="swiper-slide">
+                    <video class="w-full aspect-[4/3] object-cover object-center sm:aspect-[12/5]" loop muted>
+                        <source src="{{ asset('videos/gl' . $i . '-short.mp4') }}" type="video/mp4">
+                    </video>
+                </div>
+            @endfor
+        </div>
+        <div class="swiper-pagination"></div>
     </div>
+    {{-- <div class="embla">
+        <div class="embla__container">
+            @for($i = 1; $i <= 3; $i++)
+                <div class="embla__slide">
+                    <video class="w-full aspect-[4/3] object-cover object-center sm:aspect-[12/5]" loop muted>
+                        <source src="{{ asset('videos/gl' . $i . '-short.mp4') }}" type="video/mp4">
+                    </video>
+                </div>
+            @endfor
+        </div>
+    </div> --}}
 </section>
+{{-- End Banner Section --}}
 
-
-{{-- about Section --}}
-<section class="container py-6">
-
-    <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-6 items-center">
-        <div>
-            <h3 class="font-bold text-2xl text-black mb-4">About Us</h3>
-
-            <p><strong>Good Life Culinary</strong> is Tangerang's #1 cafe and
-                restaurant for birthdays and events, featuring a
-                beautiful glass rooftop. Since 2019, we've been
-                serving a mix of Western and Asian dishes at
-                affordable prices. Perfect for celebrations like
-                birthdays, sweet seventeens, and sangjit ceremonies.</p>
-        </div>
-
-        <div>
-            <div class="aspect-video w-full">
-                <img src="{{ asset('img/video_thumbnail.png') }}" alt="About Us" class="rounded-xl w-full h-full object-cover object-center">
+{{-- About Section --}}
+<section id="about-us" class="scroll-mt-20">
+    <div class="py-10 lg:pt-24">
+        <div class="flex flex-col gap-14 lg:gap-20">
+            <div class="container flex flex-col items-center gap-6 lg:gap-12 lg:flex-row">
+                <div class="flex-1 space-y-4">
+                    <h3 class="text-3xl font-bold motion-duration-1000 intersect:motion-preset-slide-right intersect:motion-preset-blur-right">About Us</h3>
+                    <p class="leading-loose motion-duration-1000 motion-delay-200 intersect:motion-preset-slide-right intersect:motion-preset-blur-right"><strong>Good Life Culinary</strong> is Tangerang's #1 café and restaurant for birthdays and events, featuring a beautiful glass rooftop. Since 2019, we’ve been serving a mix of Western and Asian dishes at affordable prices. Perfect for celebrations like birthdays, sweet seventeens, and sangjit ceremonies.</p>
+                </div>
+                <button class="group relative flex-1 aspect-video rounded-3xl outline-none overflow-hidden scale-0 opacity-0 intersect:scale-100 intersect:opacity-100 transition duration-300 ease-in-out delay-300">
+                    <div class="absolute flex justify-center items-center inset-0 w-full h-full bg-goodlife-bronze/70">
+                        <img class="transition-all duration-300 ease-in-out absolute w-20 top-1/2 left-[52%] -translate-y-1/2 -translate-x-1/2 group-hover:scale-110 md:w-24" src="{{ asset('img/play-button.png') }}" alt="Play">
+                        <img class="w-28 aspect-square sm:w-32 md:w-48" src="{{ asset('img/logo.png') }}" alt="Good Life Culinary">
+                    </div>
+                    <img src="{{ asset('img/thumbnail.png') }}" alt="Thumbnail Video">
+                </button>
             </div>
-        </div>
-    </div>
-
-</section>
-
-<section class="container py-4">
-    <div class="grid grid-cols-4 gap-x-11">
-        <div class="aspect-3-4 w-full rounded-2xl overflow-hidden relative">
-            {{-- <img src="{{ asset('img/food1.jpg') }}" alt="Food 1" class="w-full h-full object-cover object-center"> --}}
-            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                <h3 class="text-white text-2xl font-bold">Western Dishes</h3>
+            <div class="flex flex-col gap-12 md:container">
+                <div class="hidden justify-center gap-6 md:flex lg:gap-10">
+                    @php
+                        $items = ['Birthdays', 'Ceremonies', 'Gatherings'];
+                    @endphp
+                    {{-- Desktop --}}
+                    @foreach($items as $key => $item)
+                        <div class="group relative aspect-3-4 flex-1 max-w-xs rounded-3xl outline-none overflow-hidden scale-0 opacity-0 intersect:scale-100 intersect:opacity-100 transition duration-300 ease-in-out">
+                            <div class="absolute transition-all duration-300 ease-in-out flex justify-center items-end left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-goodlife-bronze to-transparent group-hover:h-3/4">
+                                <p class="text-2xl text-white font-bold cursor-default pb-10 md:text-3xl lg:text-4xl">{{ $item }}</p>
+                            </div>
+                            <img class="w-full h-full object-cover object-center" src="{{ asset('img/provide-' . $key + 1 . '.png') }}" alt="Provide Background">
+                        </div>
+                    @endforeach
+                </div>
+                {{-- Mobile --}}
+                <div class="provide-slider max-w-full overflow-x-hidden block md:!hidden">
+                    <div class="swiper-wrapper">
+                        @for($i = 1; $i <= 2; $i++)
+                            @foreach($items as $key => $item)
+                                <div class="swiper-slide">
+                                    <div class="relative aspect-3-4 flex-1 max-w-xs rounded-3xl outline-none overflow-hidden">
+                                        <div class="absolute flex justify-center items-end left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-goodlife-bronze to-transparent">
+                                            <p class="text-2xl text-white font-bold pb-10 md:text-3xl lg:text-4xl">{{ $item }}</p>
+                                        </div>
+                                        <img class="w-full h-full object-cover object-center" src="{{ asset('img/provide-' . $key + 1 . '.png') }}" alt="Provide Background">
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endfor
+                    </div>
+                </div>
+                <p class="leading-relaxed text-center px-6 sm:px-10"><b>Good Life Culinary Cafe</b> is the perfect destination for celebrating special events and creating unforgettable moments with your loved ones. We offer customizable an flexible event packages tailored to your needs, including services such as MC, sound system, karaoke, backdrop decoration, screen projector, and more. Enjoy premium service and high-quality food at an affordable price ensuring a memorable experience for you and your guests. Whether it’s a birthday, anniversary, or gathering, we make every occasion truly special.</p>
             </div>
-        </div>
-        <div class="aspect-3-4 w-full rounded-2xl overflow-hidden relative">
-            {{-- <img src="{{ asset('img/food1.jpg') }}" alt="Food 1" class="w-full h-full object-cover object-center"> --}}
-            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                <h3 class="text-white text-2xl font-bold">Western Dishes</h3>
-            </div>
-        </div>
-        <div class="aspect-3-4 w-full rounded-2xl overflow-hidden relative">
-            {{-- <img src="{{ asset('img/food1.jpg') }}" alt="Food 1" class="w-full h-full object-cover object-center"> --}}
-            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                <h3 class="text-white text-2xl font-bold">Western Dishes</h3>
-            </div>
-        </div>
-        <div class="aspect-3-4 w-full rounded-2xl overflow-hidden relative">
-            <div class="w-full h-full bg-gradient-to-r from-goodlife-green to-transparent">
-
-            </div>
-            <div class="absolute inset-0 flex items-center justify-center">
-                <h3 class="text-white text-2xl font-bold">Western Dishes</h3>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="bg-goodlife-green">
-    <section class="container">
-        <div class="min-h-[500px] grid grid-cols-1 md:grid-cols-2 md:gap-x-6 items-center">
-            <div class="text-white">
-                <h3 class="font-bold text-2xl text-white mb-4 ">Menu Book</h3>
-
-                <p class="mb-4">
-                    Explore our menu filled with mouthwatering dishes that blend
-                    the best of Western and Asian cuisines. From appetizers to
-                    desserts, we have something to satisfy every craving.
-                    Whether it's a casual meal or a grand event, our menu is
-                    designed to impress.</p>
-
-                <a role="button" class="bg-goodlife-orange rounded-lg text-lg font-normal px-4 py-2">CLICK HERE!</a>
-            </div>
-        </div>
-    </section>
-</div>
-
-<section class="containter py-6">
-
-    <h3 class="text-4xl font-bold text-center mb-4">Follow Us on <span class="text-goodlife-orange">Social Media</span></h3>
-
-    <div class="flex justify-center space-x-11">
-        <div class="aspect-3-4 rounded-lg overflow-hidden relative">
-            <img src="{{ asset('img/social-youtubethumbs.png') }}" alt="Goodlive Culinary Youtube" class="w-full h-full object-cover object-center aboslute inset-0">
-
-            <a class="absolute inset-0 bg-goodlife-green/70" href="#" ></a>
-
-        </div>
-        <div class="aspect-3-4 rounded-lg overflow-hidden relative">
-            <img src="{{ asset('img/social-instathumbs.png') }}" alt="Goodlive Culinary Instagram" class="w-full h-full object-cover object-center aboslute inset-0">
-            <a class="absolute inset-0 bg-goodlife-green/70" href="#" ></a>
-        </div>
-        <div class="aspect-3-4 rounded-lg overflow-hidden relative">
-            <img src="{{ asset('img/social-tiktokthumbs.png') }}" alt="Goodlive Culinary Tiktok" class="w-full h-full object-cover object-center aboslute inset-0">
-            <a class="absolute inset-0 bg-goodlife-green/70" href="#" ></a>
         </div>
     </div>
-
-</section>
-
-<section class="grid grid-cols-12 bg-goodlife-orange relative" id="footer-hero">
-
-    <div class="col-span-12 grid grid-cols-1 md:grid-cols-2 md:gap-x-6 items-center container min-h-[500px]">
-
-        <div class="contact-wrapper">
-            <h3 class="font-bold text-2xl text-white mb-4">Contact Us for Reservation</h3>
-
-            <p class="text-white text-lg">Planning a special occasion or just looking to reserve a
-                table? We've made it easy for you! Contact our team via
-                WhatsApp to book your spot. Whether it's a birthday party, a
-                romantic dinner, or a corporate gathering, we're here to help
-                you make it perfect.</p>
-        </div>
-
+    <div class="hidden grid-cols-3 gap-5 p-5 md:grid">
+        @for($i = 1; $i <= 9; $i++)
+            <img src="{{ asset('img/gallery-' . $i . '.png') }}" alt="Gallery">
+        @endfor
     </div>
-
-    <div id="map-wrapper" class="absolute inset-y-0"></div>
-
+    <div class="max-w-full galleries-slider overflow-x-hidden block mb-12 md:hidden">
+        <div class="swiper-wrapper">
+            @for($i = 1; $i <= 9; $i++)
+                <div class="swiper-slide">
+                    <img class="w-full aspect-video" src="{{ asset('img/gallery-' . $i . '.png') }}" alt="Gallery">
+                </div>
+            @endfor
+        </div>
+    </div>
 </section>
+{{-- End About Section --}}
+
+{{-- Menu Section --}}
+<section id="menu-book" class="scroll-mt-20">
+    <div class="relative bg-goodlife-bronze flex items-center py-14 overflow-hidden md:py-28">
+        <div class="container">
+            <div class="relative max-w-xl flex flex-col gap-4 z-40">
+                <h3 class="text-3xl font-bold text-white">Menu Book</h3>
+                <p class="leading-relaxed text-white">Explore our menu filled with mouthwatering dishes that blend the best of Western and Asian cuisines. From appetizers to desserts, we have something to satisfy every craving. Whether it’s a casual meal or a grand event, our menu is designed to impress.</p>
+                <button class="group relative transition-all duration-300 ease-in-out max-w-max font-semibold bg-white text-goodlife-orange rounded-xl px-6 py-2 hover:rotate-[2deg] hover:scale-110 hover:bg-goodlife-orange hover:text-white">
+                    <span>CLICK HERE!</span>
+                </button>
+            </div>
+        </div>
+        <div class="absolute inset-0 w-full h-full bg-black/60 z-30 xl:hidden"></div>
+        <img class="motion-preset-slide-down-left motion-duration-2000 max-w-screen-xl absolute top-1/2 -translate-y-1/2 -right-[390px] xl:-right-[500px] z-20 2xl:-right-[390px]" src="{{ asset('img/menu-image.png') }}" alt="Menu Image">
+    </div>
+</section>
+{{-- End Menu Section --}}
+
+{{-- Social Media Section --}}
+<section id="social-media" class="scroll-mt-20 px-6 py-10 md:py-20 md:px-12">
+    <div class="space-y-6">
+        <div class="max-w-screen-md mx-auto flex flex-col gap-6 text-center">
+            <h3 class="text-3xl font-bold">
+                Follow Us On <span class="text-goodlife-orange">Social Media</span>
+            </h3>
+            <p class="leading-relaxed">Stay connected with Good Life Culinary and never miss an update! Follow us on Instagram and Tiktok for our latest promotions, event highlights, and behind-the-scenes moments. Join our community and be inspired by how we make every event unforgettable.</p>
+        </div>
+        <div class="flex justify-center gap-4 md:gap-8">
+            @for($i = 1; $i <= 3; $i++)
+                <a href="#" target="_blank" class="group max-w-64 max-h-max md:flex-1">
+                    {{-- Desktop --}}
+                    <div class="hidden relative rounded-3xl h-full overflow-hidden md:flex">
+                        <img class="transition-all duration-300 ease-in-out scale-150 w-full group-hover:rotate-12" src="{{ asset('img/socmed-' . $i . '.png') }}" alt="{{ $i }}">
+                        <div class="absolute inset-0 w-full h-full flex justify-center items-center bg-goodlife-bronze/70">
+                            <div class="transition-all duration-300 ease-in-out flex justify-center items-center w-20 h-20 bg-white rounded-full group-hover:scale-110">
+                                <img class="w-10 group-hover:motion-preset-shake" src="{{ asset('img/icon-socmed' . $i . '.png') }}" alt="Social Media Icon">
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Mobile --}}
+                    <div class="w-full h-full flex justify-center items-center md:hidden">
+                        <div class="flex justify-center items-center w-14 h-14 bg-goodlife-sand rounded-full group-hover:scale-110 sm:w-20 sm:h-20">
+                            <img class="w-7 group-hover:motion-preset-shake sm:w-10" src="{{ asset('img/icon-socmed' . $i . '.png') }}" alt="Social Media Icon">
+                        </div>
+                    </div>
+                </a>
+            @endfor
+        </div>
+    </div>
+</section>
+{{-- End Social Media Section --}}
 
 @endsection
-
-@push('scripts')
-    <script>
-
-        const embedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2487036033504!2d106.6284342!3d-6.230908299999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fdea1fe5cf75%3A0xda5732e3b5187750!2sGood%20Life%20Culinary%20-%20Kelapa%20Dua%20-%20Gading%20Serpong!5e0!3m2!1sen!2sid!4v1735981818692!5m2!1sen!2sid";
-        let footerHero = document.querySelector('#footer-hero');
-        let contactWrapper = document.querySelector('#footer-hero .contact-wrapper');
-
-        let wrapper = document.querySelector('#map-wrapper');
-        let iframeElement = document.createElement('iframe');
-
-        const attrs = {
-            loaded: false,
-            src: embedUrl,
-            style: 'border:0;',
-            allowfullscreen: '',
-            loading: 'lazy',
-            referrerpolicy: 'no-referrer-when-downgrade',
-            width: 0,
-            height: 0
-        }
-
-        // get the footerWrapper height
-        let footerHeroHeight = footerHero.offsetHeight;
-        // get contactWrapper end horizontal position
-        let contactWrapperEnd = contactWrapper.getBoundingClientRect().right;
-        // set wrapper map position by contactWrapperEnd
-        // wrapper.style.right = `calc(100vw - ${contactWrapperEnd}px)`;
-        wrapper.style.left = `${contactWrapperEnd}px`;
-
-        // get wrapper width & height in px
-        let wrapperWidth = wrapper.offsetWidth;
-        let wrapperHeight = wrapper.offsetHeight;
-
-        // set iframeElement attributes
-        for (let key in attrs) {
-            iframeElement.setAttribute(key, attrs[key]);
-        }
-
-        // set iframeElement width & height
-        iframeElement.width = wrapperWidth;
-        iframeElement.height = wrapperHeight;
-
-        // append iframeElement to wrapper
-        wrapper.appendChild(iframeElement);
-
-        // set iframeElement loaded to true
-        attrs.loaded = true;
-
-    </script>
-@endpush
