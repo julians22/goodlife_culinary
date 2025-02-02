@@ -1,22 +1,13 @@
 import Alpine from 'alpinejs'
 import Swiper from 'swiper'
-import { Autoplay, FreeMode } from 'swiper/modules'
+import { Autoplay, Navigation } from 'swiper/modules'
 import { Observer } from 'tailwindcss-intersect'
 import 'swiper/css'
 import './bootstrap'
-import EmblaCarousel from 'embla-carousel'
 
 window.Alpine = Alpine
 Alpine.start()
 Observer.start()
-
-// const emblaNode = document.querySelector('.embla')
-// const options = {
-//     loop: false
-// }
-// const emblaApi = EmblaCarousel(emblaNode, options)
-
-// console.log(emblaApi.slideNodes())
 
 new Swiper('.provide-slider', {
     modules: [Autoplay],
@@ -37,43 +28,50 @@ new Swiper('.galleries-slider', {
     }
 })
 
-const swiper = new Swiper('.slide-show', {
+const slideShow = new Swiper('.slide-show', {
     init: false,
-    modules: [Autoplay],
+    modules: [Navigation],
     slidesPerView: 1,
     disableOnInteraction: false,
     loop: true,
-    autoplay: {
-        delay: 3000
-    }
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
 })
 
-swiper.on('init', (e) => {
+slideShow.on('init', (e) => {
     e.slides.map((slide) => {
         if (slide.classList.contains('swiper-slide-active')) {
-            let video = slide.querySelector('video')
-            video.play()
+            if (slide.querySelector('video')) {
+                let video = slide.querySelector('video')
+                video.play()
+            }
         }
     })
 })
 
-swiper.on('slideChangeTransitionStart', (e) => {
+slideShow.on('slideChangeTransitionStart', (e) => {
     e.slides.map((slide) => {
         if (slide.classList.contains('swiper-slide-active')) {
-            let video = slide.querySelector('video')
-            video.load()
-            video.play()
+            if (slide.querySelector('video')) {
+                let video = slide.querySelector('video')
+                video.load()
+                video.play()
+            }
         }
     })
 })
 
-swiper.on('slideChangeTransitionEnd', (e) => {
+slideShow.on('slideChangeTransitionEnd', (e) => {
     e.slides.map((slide) => {
         if (slide.classList.contains('swiper-slide-prev') || slide.classList.contains('swiper-slide-next')) {
-            let video = slide.querySelector('video')
-            video.pause()
+            if (slide.querySelector('video')) {
+                let video = slide.querySelector('video')
+                video.pause()
+            }
         }
     })
 })
 
-document.addEventListener('DOMContentLoaded', () => { swiper.init() })
+document.addEventListener('DOMContentLoaded', () => { slideShow.init() })

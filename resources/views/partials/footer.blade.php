@@ -3,28 +3,28 @@
         <div class="flex-1 bg-goodlife-bronze w-1/2 py-24 hidden lg:block">
             <div class="container">
                 <div class="max-w-xl ms-auto flex flex-col gap-3 text-white">
-                    <h3 class="text-3xl font-bold">Contact Us for Reservation</h3>
-                    <p class="leading-relaxed">Planning a special occasion or just looking to reserve a table? We’ve made it easy for you! Contact our team via WhatsApp to book your spot. Whether it’s a birthday party, a romantic dinner, or a corporate gathering, we’re here to help you make it perfect.</p>
+                    <h3 class="text-3xl font-bold">{{ $contact->contact_title }}</h3>
+                    <p class="leading-relaxed">{!! $contact->contact_description !!}</p>
                     <div class="flex items-center gap-5">
-                        @for($i = 1; $i <= 3; $i++)
-                            <a href="#" class="transition-all duration-300 ease-in-out hover:scale-110">
-                                <img class="w-10" src="{{ asset('img/footer' . $i . '.png') }}" alt="">
+                        @foreach($contact->contact_links as $c)
+                            <a href="{{ $c['link'] }}" class="transition-all duration-300 ease-in-out hover:scale-110">
+                                <img class="w-10" src="{{ $c['icon'] }}" alt="{{ $c['alt_icon'] }}">
                             </a>
-                        @endfor
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
         <div class="flex flex-col gap-5 flex-1 w-full text-white bg-goodlife-bronze px-6 py-12 sm:px-10 lg:w-1/2 lg:px-0 lg:py-0">
-            <h3 class="text-2xl font-bold block sm:text-3xl lg:hidden">Contact Us for Reservation</h3>
+            <h3 class="text-2xl font-bold block sm:text-3xl lg:hidden">{{ $contact->contact_title }}</h3>
             <iframe class="min-h-80 lg:min-h-full" width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Good%20Life%20Culinary%20-%20Kelapa%20Dua%20-%20Gading%20Serpong+(My%20Business%20Name)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-            <p class="leading-relaxed lg:hidden block">Planning a special occasion or just looking to reserve a table? We’ve made it easy for you! Contact our team via WhatsApp to book your spot. Whether it’s a birthday party, a romantic dinner, or a corporate gathering, we’re here to help you make it perfect.</p>
+            <p class="leading-relaxed block lg:hidden">{!! $contact->contact_description !!}</p>
             <div class="flex items-center gap-5 lg:hidden">
-                @for($i = 1; $i <= 3; $i++)
+                @foreach($contact->contact_links as $c)
                     <a href="#" class="transition-all duration-300 ease-in-out hover:scale-110">
-                        <img class="w-10" src="{{ asset('img/footer' . $i . '.png') }}" alt="">
+                        <img class="w-10" src="{{ $c['icon'] }}" alt="{{ $c['alt_icon'] }}">
                     </a>
-                @endfor
+                @endforeach
             </div>
         </div>
     </div>

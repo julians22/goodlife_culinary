@@ -23,7 +23,7 @@ class ManageSocialMedia extends SettingsPage
 
     protected ?string $subheading = 'Manage the social media section.';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 5;
 
     protected static string $settings = SocialMediaSettings::class;
 
@@ -51,6 +51,8 @@ class ManageSocialMedia extends SettingsPage
                                         '2xl' => 6
                                     ])
                                     ->label('Title 1')
+                                    ->prefixIcon('heroicon-o-h3')
+                                    ->placeholder('e.g. Follow Us on')
                                     ->autocomplete(false)
                                     ->helperText('Required title')
                                     ->required(),
@@ -62,8 +64,10 @@ class ManageSocialMedia extends SettingsPage
                                         '2xl' => 6
                                     ])
                                     ->label('Title 2')
+                                    ->prefixIcon('heroicon-o-h3')
+                                    ->placeholder('e.g. Social Media')
                                     ->autocomplete(false)
-                                    ->helperText('Optional colored title'),
+                                    ->helperText('Colored title (Optional)'),
                             ]),
                             RichEditor::make('socmed_description')
                                 ->label('Description')
@@ -77,17 +81,38 @@ class ManageSocialMedia extends SettingsPage
                                 ->reorderableWithButtons()
                                 ->required()
                                 ->schema([
-                                    TextInput::make('icon')
-                                        ->label('Icon')
-                                        ->autocomplete(false)
-                                        ->required(),
                                     TextInput::make('link')
                                         ->label('Link')
+                                        ->prefixIcon('heroicon-o-link')
+                                        ->placeholder('e.g. https://www.example.com')
                                         ->autocomplete(false)
                                         ->required(),
-                                    CuratorPicker::make('image')
-                                        ->label('Image')
-                                        ->maxItems(1),
+                                    Section::make()
+                                        ->schema([
+                                            TextInput::make('alt_icon')
+                                                ->prefixIcon('heroicon-o-hashtag')
+                                                ->placeholder('e.g. Alt Icon')
+                                                ->label('Alt Icon'),
+                                            CuratorPicker::make('icon')
+                                                ->label('Icon')
+                                                ->maxSize(2048)
+                                                ->maxItems(1)
+                                                ->helperText('Maximum 2MB.')
+                                                ->required(),
+                                        ]),
+                                    Section::make()
+                                        ->schema([
+                                            TextInput::make('alt_background')
+                                                ->prefixIcon('heroicon-o-hashtag')
+                                                ->placeholder('e.g. Alt Background')
+                                                ->label('Alt Background'),
+                                            CuratorPicker::make('background')
+                                                ->label('Background')
+                                                ->maxSize(2048)
+                                                ->maxItems(1)
+                                                ->helperText('Maximum 2MB.')
+                                                ->required(),
+                                        ])
                                 ])
                     ])
             ]);

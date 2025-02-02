@@ -11,19 +11,19 @@ return new class extends SettingsMigration
         $this->migrator->add('socmed.socmed_description', "Stay connected with Good Life Culinary and never miss an update! Follow us on Instagram and Tiktok for our latest promotions, event highlights, and behind-the-scenes moments. Join out community and be inspired by how we make every event unforgettable.");
         $this->migrator->add('socmed.socmed_links', [
             [
-                'icon' => 'icon-[mdi--youtube]',
-                'image' => '',
-                'link' => ''
+                'background' => '',
+                'icon' => '',
+                'link' => 'https://www.youtube.com/channel/UC2gjRqDbQnmbrN9ls2vo29A'
             ],
             [
-                'icon' => 'icon-[mdi--instagram]',
-                'image' => '',
-                'link' => ''
+                'background' => '',
+                'icon' => '',
+                'link' => 'https://www.instagram.com/goodlifeculinary.official/?hl=en'
             ],
             [
-                'icon' => 'icon-[ic--baseline-tiktok]',
-                'image' => '',
-                'link' => ''
+                'background' => '',
+                'icon' => '',
+                'link' => 'https://www.tiktok.com/@goodlifeculinaryofficial'
             ],
         ]);
     }

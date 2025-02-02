@@ -23,7 +23,7 @@ class ManageAbout extends SettingsPage
 
     protected ?string $subheading = 'Manage the about section.';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
 
     protected static string $settings = AboutSettings::class;
 
@@ -36,6 +36,8 @@ class ManageAbout extends SettingsPage
                         TextInput::make('about_title')
                             ->label('Title')
                             ->autocomplete(false)
+                            ->prefixIcon('heroicon-o-h3')
+                            ->placeholder('e.g. About Us')
                             ->required(),
                         RichEditor::make('about_description')
                             ->label('Description')
@@ -44,37 +46,20 @@ class ManageAbout extends SettingsPage
                                 'underline', 'redo', 'undo'
                             ])
                             ->required(),
-                        Grid::make()
-                            ->columns([
-                                'default' => 1,
-                                'sm' => 2,
-                                'md' => 4,
-                                'lg' => 6,
-                                'xl' => 8,
-                                '2xl' => 12,
-                            ])
+                        Section::make()
                             ->schema([
-                                CuratorPicker::make('about_video')
-                                    ->columnSpan([
-                                        'md' => 2,
-                                        'lg' => 3,
-                                        'xl' => 4,
-                                        '2xl' => 6
-                                    ])
+                                TextInput::make('about_video')
                                     ->label('Video')
-                                    ->acceptedFileTypes(['video/mp4'])
-                                    ->maxSize(3072)
-                                    ->maxItems(1)
-                                    ->helperText('Maximum 3MB.')
+                                    ->autocomplete(false)
+                                    ->prefixIcon('heroicon-o-link')
+                                    ->placeholder('e.g. https://www.example.com')
                                     ->required(),
+                                TextInput::make('about_alt_video_thumbnail')
+                                    ->prefixIcon('heroicon-o-hashtag')
+                                    ->placeholder('e.g. Alt Video Thumbnail')
+                                    ->label('Alt Video Thumbnail'),
                                 CuratorPicker::make('about_video_thumbnail')
-                                    ->columnSpan([
-                                        'md' => 2,
-                                        'lg' => 3,
-                                        'xl' => 4,
-                                        '2xl' => 6
-                                    ])
-                                    ->label('Thumbnail')
+                                    ->label('Video Thumbnail')
                                     ->maxSize(2048)
                                     ->maxItems(1)
                                     ->helperText('Maximum 2MB.')
@@ -88,7 +73,13 @@ class ManageAbout extends SettingsPage
                                 TextInput::make('title')
                                     ->label('Title')
                                     ->autocomplete(false)
+                                    ->prefixIcon('heroicon-o-h3')
+                                    ->placeholder('e.g. Title')
                                     ->required(),
+                                TextInput::make('alt_image')
+                                    ->prefixIcon('heroicon-o-hashtag')
+                                    ->placeholder('e.g. Alt Image')
+                                    ->label('Alt Image'),
                                 CuratorPicker::make('image')
                                     ->label('Image')
                                     ->maxSize(2048)

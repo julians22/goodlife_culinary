@@ -21,7 +21,7 @@ class ManageMenu extends SettingsPage
 
     protected ?string $subheading = 'Manage the menu section.';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 4;
 
     protected static string $settings = MenuSettings::class;
 
@@ -33,10 +33,20 @@ class ManageMenu extends SettingsPage
                     ->schema([
                         TextInput::make('menu_title')
                             ->label('Title')
+                            ->prefixIcon('heroicon-o-h3')
+                            ->placeholder('e.g. Menu Book')
                             ->autocomplete(false)
                             ->required(),
-                        TextInput::make('menu_button')
-                            ->label('Button')
+                        TextInput::make('menu_name_button')
+                            ->label('Name Button')
+                            ->prefixIcon('heroicon-s-cursor-arrow-rays')
+                            ->placeholder('e.g. CLICK HERE!')
+                            ->autocomplete(false)
+                            ->required(),
+                        TextInput::make('menu_link_button')
+                            ->label('Link Button')
+                            ->prefixIcon('heroicon-o-link')
+                            ->placeholder('e.g. https://example.com')
                             ->autocomplete(false)
                             ->required(),
                         RichEditor::make('menu_description')

@@ -8,7 +8,8 @@ return new class extends SettingsMigration
     {
         $this->migrator->add('about.about_title', 'About Us');
         $this->migrator->add('about.about_description', "<b>Good Life Culinary</b> is Tangerang's #1 cafe and restaurant for birthdays and events, featuring a beautiful glass rooftop. Since 2019, we've been serving a mix of Western and Asian dishes at affordable prices. Perfect for celebrations like birthdays, sweet seventeens, and sangjit ceremonies.");
-        $this->migrator->add('about.about_video', '');
+        $this->migrator->add('about.about_video', 'https://www.youtube.com/watch?v=qr3XnTpgnr8');
+        $this->migrator->add('about.about_alt_video_thumbnail', '');
         $this->migrator->add('about.about_video_thumbnail', '');
         $this->migrator->add('about.about_provide', [
             [

@@ -3,7 +3,9 @@
 namespace App\Filament\Pages;
 
 use App\Settings\ContactSettings;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Filament\Forms;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
@@ -20,7 +22,7 @@ class ManageContact extends SettingsPage
 
     protected ?string $subheading = 'Manage the contact section.';
 
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 6;
 
     protected static string $settings = ContactSettings::class;
 
@@ -32,11 +34,41 @@ class ManageContact extends SettingsPage
                     ->schema([
                         TextInput::make('contact_title')
                             ->label('Title')
-                            ->placeholder('Contact Us')
+                            ->prefixIcon('heroicon-o-h3')
+                            ->placeholder('e.g. Contact Us')
+                            ->autocomplete(false)
                             ->required(),
                         RichEditor::make('contact_description')
                             ->label('Description')
+                            ->toolbarButtons([
+                                'bold', 'italic', 'link',
+                                'underline', 'redo', 'undo'
+                            ])
                             ->required(),
+                        Repeater::make('contact_links')
+                            ->label('Contacts')
+                            ->required()
+                            ->schema([
+                                TextInput::make('link')
+                                    ->label('Link')
+                                    ->prefixIcon('heroicon-o-link')
+                                    ->placeholder('e.g. https://www.example.com')
+                                    ->autocomplete(false)
+                                    ->required(),
+                                    Section::make()
+                                        ->schema([
+                                            TextInput::make('alt_icon')
+                                                ->prefixIcon('heroicon-o-hashtag')
+                                                ->placeholder('e.g. Alt Icon')
+                                                ->label('Alt Icon'),
+                                            CuratorPicker::make('icon')
+                                                ->label('Icon')
+                                                ->maxSize(2048)
+                                                ->maxItems(1)
+                                                ->helperText('Maximum 2MB.')
+                                                ->required(),
+                                        ]),
+                            ])
                     ])
             ]);
     }
