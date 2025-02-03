@@ -34,8 +34,10 @@ class MainController extends Controller
         foreach($bannerSettings->banners as $key => $banner) {
             switch($banner['type']) {
                 case 'Video':
-                    $media = Media::find($banner['data']['video']);
-                    $this->banner->banners[$key]['data']['video'] = $media->url;
+                    $video = Media::find($banner['data']['video']);
+                    $poster = Media::find($banner['data']['poster']);
+                    $this->banner->banners[$key]['data']['video'] = $video->url;
+                    $this->banner->banners[$key]['data']['poster'] = $poster->url;
                     break;
                 case 'Image':
                     $media = Media::find($banner['data']['image']);

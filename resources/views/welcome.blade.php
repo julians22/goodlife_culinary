@@ -15,7 +15,7 @@
                         @break
                     @case('Video')
                         <div class="swiper-slide">
-                            <video class="w-full aspect-[2.5/1] object-cover object-center" loop muted playsinline>
+                            <video class="w-full aspect-[2.5/1] object-cover object-center" poster="{{ $b['data']['poster'] }}" loop muted playsinline>
                                 <source src="{{ $b['data']['video'] }}" type="video/mp4">
                             </video>
                         </div>

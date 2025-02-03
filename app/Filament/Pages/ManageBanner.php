@@ -57,6 +57,13 @@ class ManageBanner extends SettingsPage
                                 Block::make('Video')
                                     ->icon('heroicon-s-video-camera')
                                     ->schema([
+                                        CuratorPicker::make('poster')
+                                            ->label('Poster')
+                                            ->maxSize(2048)
+                                            ->maxItems(1)
+                                            ->helperText('Maximum 2MB. Poster image for video.')
+                                            ->acceptedFileTypes(['image/*'])
+                                            ->required(),
                                         CuratorPicker::make('video')
                                             ->label('Video')
                                             ->maxSize(12288)

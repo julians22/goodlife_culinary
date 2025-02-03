@@ -11,6 +11,9 @@
     @include('partials.navbar')
     <main id="app">
         @yield('content')
+        <a href="{{ $contact->contact_links[0]['link'] }}" target="_blank" class="fixed bottom-4 right-4 z-30">
+            <img src="{{ asset('img/whatsapp.png') }}" alt="WhatsApp" class="w-12 h-12">
+        </a>
     </main>
     @include('partials.footer')
 </body>
