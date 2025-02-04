@@ -1,7 +1,7 @@
 <footer id="contact-us" class="scroll-mt-20">
     <div class="flex">
         <div class="flex-1 bg-goodlife-bronze w-1/2 py-24 hidden lg:block">
-            <div class="container">
+            <div class="max-[1920px]:container min-[1920px]:px-24">
                 <div class="max-w-xl ms-auto flex flex-col gap-3 text-white">
                     <h3 class="text-3xl font-bold">{{ $contact->contact_title }}</h3>
                     <p class="leading-relaxed">{!! $contact->contact_description !!}</p>
