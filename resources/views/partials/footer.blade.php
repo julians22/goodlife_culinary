@@ -21,7 +21,7 @@
             <p class="leading-relaxed block lg:hidden">{!! $contact->contact_description !!}</p>
             <div class="flex items-center gap-5 lg:hidden">
                 @foreach($contact->contact_links as $c)
-                    <a href="#" class="transition-all duration-300 ease-in-out hover:scale-110">
+                    <a href="{{ $c['link'] }}" target="_blank" class="transition-all duration-300 ease-in-out hover:scale-110">
                         <img class="w-10" src="{{ $c['icon'] }}" alt="{{ $c['alt_icon'] }}">
                     </a>
                 @endforeach
